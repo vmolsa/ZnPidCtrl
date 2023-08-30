@@ -4,6 +4,7 @@ const std = @import("std");
 // https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method
 // https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller
 // https://en.wikipedia.org/wiki/Riemann_sum
+// https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control
 
 pub const ZnGains = struct {
     Kp: f32,
@@ -123,8 +124,8 @@ pub const ZnPidCtrl = struct {
         setPoint: f32, // setpoint value.
         minOutput: f32, // Setpoint value of the mechanical static friction. If the input value is all the time much lower than setpoint value in during calibration (or there is much of slack) then increase the minOutput value, and if input value is all the time over the setpoint value then decrease the minOutput (Otherwise the mechanical static friction is higher than the actual setpoint value).
         maxOutput: f32, // Must be higher than minOutput value and preferably below the maximum limit value (ex: minOutput = 10% maxOutput = 50%)
-        minBangBang: u32, // Min threshold value for bang-bang control (not used in during calibration) https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control or min level for triggerin calibration (iterations must be greater than 0)
-        maxBangBang: u32, // Max threshold value for bang-bang control (not used in during calibration) https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control or max level for triggerin calibration (iterations must be greater than 0)
+        minBangBang: u32, // Min threshold value for bang-bang control (not used in during calibration) or min level for triggerin calibration (iterations must be greater than 0)
+        maxBangBang: u32, // Max threshold value for bang-bang control (not used in during calibration) or max level for triggerin calibration (iterations must be greater than 0)
         autoCalibrate: f32, // Threshold value for +/-(input value). iterations must be defined
         iterations: u32, // Iterations to run auto calibrate ex: 1000
     ) f32 {
