@@ -253,8 +253,6 @@ test "ZnSafe - With calibration" {
     var calibrated: f32 = 0;
     const setpoint = 668.5;
 
-    ctrl.setIterations(10000);
-
     std.debug.print("\nInput: {d}\n", .{input});
 
     for (0..10000000) |us| { // Every iteration is happening in 100ms cycles
