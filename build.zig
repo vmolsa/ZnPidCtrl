@@ -15,6 +15,11 @@ pub fn build(b: *std.Build) void {
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
+    b.addModule(.{
+        .name = "ZnPidCtrl",
+        .source_file = .{ .path = "src/main.zig" },
+    });
+
     const lib = b.addStaticLibrary(.{
         .name = "ZnPidCtrl",
         // In this case the main source file is merely a path, however, in more
